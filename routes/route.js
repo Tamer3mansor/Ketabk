@@ -3,7 +3,6 @@ const express = require('express');
 const route = express.Router();
 route.get('/signup',(req,res)=>{
     res.render('signUp.ejs')
-
 });
 route.get('/',(req,res)=>{
     res.render('index.ejs')
@@ -11,5 +10,6 @@ route.get('/',(req,res)=>{
 route.get('/about',(req,res)=>{
     res.render('about.ejs')
 })
+route.post('/signUp',signUp)
 
 module.exports=route

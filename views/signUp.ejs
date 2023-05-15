@@ -5,12 +5,23 @@
   </head>
   <body class="container">
     <header><%- include('./partials/header'); %></header>
-    <form>
-      <input type="email" placeholder="enter Your email" />
-      <input type="password" placeholder="enter Your password" />
-      <input type="password" placeholder="enter Your password again" />
-      <input type="checkbox" />
-    </form>
-    <footer><-% include('./partials/footer.ejs'); %></footer>
+    <form action="/signUp" method="post">
+      <input type="email" placeholder="enter Your email" name="email"/>
+      <br>
+      <input type="password" placeholder="enter Your password" name="password"/>
+      <br>
+      <input type="password" placeholder="enter Your password again" name="confirm" />
+      <br>
+      <label>
+        <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+      </label>
+  
+      <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+  
+      <div class="clearfix">
+        <button type="button" class="cancelbtn">Cancel</button>
+        <button type="submit" class="signupbtn">Sign Up</button>
+          </form>
+    <footer><%- include('./partials/footer.ejs'); %></footer>
   </body>
 </html>
