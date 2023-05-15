@@ -2,15 +2,13 @@ const express = require('express');
 const body_parser = require('body-parser');
 const app = express();
 const connection = require('./dataBase/DB')
+const router = require('./routes/route');
+//Middleware 
 app.use(body_parser.urlencoded({ extended: false }));
 app.set('view engin','ejs')
 require('dotenv').config();
-app.get('/',(req,res)=>{
-    res.render('index.ejs')
-})
-app.get('/about',(req,res)=>{
-    res.render('about.ejs')
-})
+
+app.use('/',router);
 
 app.listen(process.env.port,()=>{
     try {
