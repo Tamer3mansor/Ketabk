@@ -1,27 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <%- include('./partials/head'); %>
-  </head>
-  <body class="container">
-    <header><%- include('./partials/header'); %></header>
-    <form action="/signUp" method="post">
-      <input type="email" placeholder="enter Your email" name="email"/>
-      <br>
-      <input type="password" placeholder="enter Your password" name="password"/>
-      <br>
-      <input type="password" placeholder="enter Your password again" name="confirm" />
-      <br>
-      <label>
-        <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
-      </label>
+<head>
+  <%- include('./partials/head'); %>
+</head>
+
+<body class="container">
+  <header><%- include('./partials/header'); %></header>
+  <form action="/signUp" method="post">
+    <input type="email" placeholder="enter Your email" name="email" />
+    <br>
+    <div class="email error"></div>
+    <br>
+    <input type="password" placeholder="enter Your password" name="password" />
+    <br>
+    <div class="password error"></div>
+    <br>
+    <input type="password" placeholder="enter Your password again" name="confirm" />
+    <br>
+    <label>
+      <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+    </label>
+
+     </div>
+    <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+    <p>Already Have an account <a href="/logIn" style="color:dodgerblue">login</a>.</p>
+    <div class="clearfix">
+      <button type="button" class="cancelbtn" onclick="this.form.reset()">Cancel</button>
+      <button type="submit" class="signupbtn" >Sign Up</button>
+  </form>
+  <div>
+  </div>
+  <script>
+    const form = document.querySelector('form');
+    const emailError = document.querySelector('.email.error');
+    const passwordError = document.querySelector('.password.error')
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      emailError.textContent = " ";
+      passwordError.textContent = " ";
+      const email = form.email.value;
+      const password = form.password.value;
+      const confirm = form.confirm.value;
+      try {
+        const res = await fetch('/signUp', {
+          method: 'POST',
+          body: JSON.stringify({ email, password, confirm }),
+          headers: { 'Content-Type': 'application/json' }
+        });
+        console.log("hi");
+        const data = await res.json();
+        console.log(res);
+        console.log("data");
+        emailError.textContent =data.response;
+      }
+      catch (error) {
+        console.log(error);
+      }
+    })
   
-      <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
-  
-      <div class="clearfix">
-        <button type="button" class="cancelbtn">Cancel</button>
-        <button type="submit" class="signupbtn">Sign Up</button>
-          </form>
-    <footer><%- include('./partials/footer.ejs'); %></footer>
-  </body>
-</html>
+  </script>
+  <footer><%- include('./partials/footer.ejs'); %></footer>
+</body>

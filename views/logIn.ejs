@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head'); %>
+  </head>
+  <body class="container">
+    <header><%- include('./partials/header'); %></header>
+    <form action="/signUp" method="post">
+      <input type="email" placeholder="enter Your email" name="email"/>
+      <br>
+      <input type="password" placeholder="enter Your password" name="password"/>
+      <br>
+    
+      <div class="clearfix">
+        <button type="button" class="cancelbtn">Cancel</button>
+        <button type="submit" class="signupbtn">Login</button>
+          </form>
+    <footer><%- include('./partials/footer.ejs'); %></footer>
+  </body>
+</html>

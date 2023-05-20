@@ -1,16 +1,19 @@
-const {signUp} = require('../controller/ketabk')
-const express = require('express');
-const {checkEmail , checkPassword} = require('../utiles/validator')
+const express = require("express");
+const { signUp } = require("../controller/ketabk");
+const { checkEmail, checkPassword } = require("../utiles/validator");
 const route = express.Router();
-route.get('/signup',(req,res)=>{
-    res.render('signUp.ejs')
+route.get("/signUp", (req, res) => {
+  res.render("signUp.ejs");
 });
-route.get('/',(req,res)=>{
-    res.render('index.ejs')
-})
-route.get('/about',(req,res)=>{
-    res.render('about.ejs')
-})
-route.post('/signUp',checkEmail,checkPassword,signUp)
+route.get("/", (req, res) => {
+  res.render("index.ejs");
+});
+route.get("/about", (req, res) => {
+  res.render("about.ejs");
+});
+route.get("/logIn", (req, res) => {
+  res.render("logIn.ejs");
+});
+route.post("/signUp", checkEmail, checkPassword, signUp);
 
-module.exports=route
+module.exports = route;
