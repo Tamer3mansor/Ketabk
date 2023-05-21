@@ -6,18 +6,21 @@ const message = (req, res, next) => {
   }
   next();
 };
+
 const checkEmail = [
-body('email')
-.isEmail().withMessage('Enter valid email')
-.notEmpty().withMessage("mail required")
-.isLength({ min: 3 }).withMessage("Too short name")
-.isLength({ max: 35 }).withMessage("Max length is 35 char")
-]
+  body("email")
+    .isEmail()
+    .withMessage("Invalid email")
+    .isEmpty()
+    .withMessage("email required"),
+  message,
+];
 const checkPassword = [
-    body('password')
+  body("password")
     .notEmpty()
-    .withMessage("Password is required")
-    .isLength({min:6})
-    .withMessage('password minimum length is 6')]
-    
-module.exports={checkEmail,checkPassword}
+    .withMessage("password required")
+    .isLength({ min: 6 })
+    .withMessage("Too short password"),
+  message,
+];
+module.exports = { checkEmail, checkPassword };

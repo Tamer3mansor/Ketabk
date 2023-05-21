@@ -14,6 +14,9 @@ route.get("/about", (req, res) => {
 route.get("/logIn", (req, res) => {
   res.render("logIn.ejs");
 });
-route.post("/signUp", checkEmail, checkPassword, signUp);
+route.post("/signUp", signUp);
+route.get("/Books", (req, res) => {
+  res.render("logIn.ejs");
+});
 
 module.exports = route;

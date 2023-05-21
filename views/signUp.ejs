@@ -1,6 +1,5 @@
-<head>
+
   <%- include('./partials/head'); %>
-</head>
 
 <body class="container">
   <header><%- include('./partials/header'); %></header>
@@ -45,11 +44,18 @@
           body: JSON.stringify({ email, password, confirm }),
           headers: { 'Content-Type': 'application/json' }
         });
-        console.log("hi");
         const data = await res.json();
-        console.log(res);
-        console.log("data");
-        emailError.textContent =data.response;
+        if(data.msg=="success"){
+          console.log("success");
+          location.assign('/Books');
+        }
+        else if(data.msg=="not equal")
+        {
+          passwordError.textContent = "tow password must be equal "
+        }
+        else
+        {emailError.textContent =data.email;
+        passwordError.textContent =data.password;}
       }
       catch (error) {
         console.log(error);
