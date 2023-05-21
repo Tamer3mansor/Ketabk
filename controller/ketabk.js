@@ -3,7 +3,7 @@ let { handelErrors } = require("../utiles/globalError");
 const asyncHandler = require("express-async-handler");
 const user = require("../models/user");
 const books = require("../models/books");
-
+const bcrypt = require("bcrypt");
 let signUp = async (req, res) => {
   const { email, password, confirm } = req.body;
   let response;
@@ -28,14 +28,22 @@ let signUp = async (req, res) => {
   }
 };
 
-let logIn = asyncHandler(async (req, res) => {
+let logIn = async (req, res) => {
   let { email, password } = req.body;
-  let _user = await user.find({ email });
+  console.log(email, password);
+  let _user = await user.findOne({ email });
   if (_user) {
-    console.log("hi ");
+    let find = await bcrypt.compare(password, _user.password);
+    if (find) {
+      // user founded
+    } else {
+      // wrong password
+    }
+  } else {
+    // wrong email
   }
-  res.send(email, password, confirm);
-});
+  res.status(200).send({ email, password });
+};
 module.exports = {
   signUp,
   logIn,

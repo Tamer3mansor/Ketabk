@@ -1,5 +1,5 @@
 const express = require("express");
-const { signUp } = require("../controller/ketabk");
+const { signUp, logIn } = require("../controller/ketabk");
 const { checkEmail, checkPassword } = require("../utiles/validator");
 const route = express.Router();
 route.get("/signUp", (req, res) => {
@@ -14,9 +14,10 @@ route.get("/about", (req, res) => {
 route.get("/logIn", (req, res) => {
   res.render("logIn.ejs");
 });
-route.post("/signUp", signUp);
 route.get("/Books", (req, res) => {
   res.render("logIn.ejs");
 });
+route.post("/signUp", signUp);
+route.post("/logIn", logIn);
 
 module.exports = route;
