@@ -14,8 +14,8 @@ route.get("/about", (req, res) => {
 route.get("/logIn", (req, res) => {
   res.render("logIn.ejs");
 });
-route.get("/Books", (req, res) => {
-  res.render("logIn.ejs");
+route.get("/books", (req, res) => {
+  res.render("books.ejs");
 });
 route.post("/signUp", signUp);
 route.post("/logIn", logIn);

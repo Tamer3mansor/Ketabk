@@ -45,18 +45,18 @@
           headers: { 'Content-Type': 'application/json' }
         });
         const data = await res.json();
-        if(data.msg=="success"){
-          console.log("success");
-          location.assign('/Books');
+          if(data.msg=="success"){
+            console.log("success");
+            location.assign('/books');
+          }
+          else if(data.msg=="not equal")
+          {
+            passwordError.textContent = "tow password must be equal "
+          }
+          else
+          {emailError.textContent =data.email;
+          passwordError.textContent =data.password;}
         }
-        else if(data.msg=="not equal")
-        {
-          passwordError.textContent = "tow password must be equal "
-        }
-        else
-        {emailError.textContent =data.email;
-        passwordError.textContent =data.password;}
-      }
       catch (error) {
         console.log(error);
       }

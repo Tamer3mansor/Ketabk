@@ -21,11 +21,11 @@
       let email=document.querySelector('email');
       let password=document.querySelector('password');
       let emailError=document.querySelector('.email.error');
-      let passwordError=document.querySelector('.email.error');
+      let passwordError=document.querySelector('.password.error');
       form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      emailError.textContent ="fff";
-      passwordError.textContent ="ffff";
+      emailError.textContent ="";
+      passwordError.textContent ="";
       const email = form.email.value;
       const password = form.password.value;
       try {
@@ -34,7 +34,21 @@
           body: JSON.stringify({ email, password }),
           headers: { 'Content-Type': 'application/json' }
         });
-        const data = await res.json();}
+        const data = await res.json();
+        console.log(data);
+        if(data.msg=="success"){
+          console.log("success");
+          location.assign('/books');
+        }
+        else if(data.msg=="Incorrect password")
+        {
+          passwordError.textContent = "Incorrect password"
+        }
+        else if(data.msg=="Incorrect email")
+        {
+          emailError.textContent ="Incorrect email";
+      }
+      }
       catch (error) {
         console.log(error);
       }
