@@ -54,6 +54,9 @@ let logIn = async (req, res) => {
     res.status(400).json({ msg: "Incorrect email" });
   }
 };
+let logOut = async (req, res) => {
+  res.cookie("jwt", "");
+};
 module.exports = {
   signUp,
   logIn,

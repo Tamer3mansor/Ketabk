@@ -2,19 +2,21 @@
 <html lang="en">
   <head>
     <%- include('./partials/head'); %>
+    <a href="/logOut">logOut</a>
   </head>
   <body class="container">
     <main>
       <header><%- include('./partials/header'); %></header>
       <input type="text" placeholder="enter keyWord here" id="search" />
       <button onclick="Search()">Search</button>
-      <div id="father"><h1>Hi here</h1></div>
+      <div id="father"><h1></h1></div>
     </main>
     <script>
       let items = [];
-      let father = document.getElementById("father");
-      let key = document.getElementById("search");
       let Search = () => {
+        let father = document.getElementById("father");
+        father.innerText = "  ";
+        let key = document.getElementById("search").value;
         fetch(`https://www.googleapis.com/books/v1/volumes?q=${key}`)
           .then((res) => {
             return res.json();
@@ -25,13 +27,13 @@
           (error) => {
             console.log(error);
           };
-        console.log(items);
         for (x = 0; x < items.length; x++) {
           var board = document.createElement("div");
+          board.style.border = "10px";
+          board.style.color = "black";
           let name = items[x].volumeInfo.title || "null";
           let Rate = items[x].volumeInfo.averageRating || "null";
           let buyLink = items[x].saleInfo.buyLink || "null";
-
           board.innerText = `name : ${name}        
           Rate : ${Rate}
           buy link : ${buyLink}`;
@@ -42,4 +44,3 @@
     <footer><%- include('./partials/footer'); %></footer>
   </body>
 </html>
-<!-- key=AIzaSyCoBHMQ2QPXdsp_rLY0LPkhY5wRS1NWWOg -->
