@@ -1,8 +1,6 @@
 let { sendEmail } = require("../utiles/mail");
 let { handelErrors } = require("../utiles/globalError");
-const asyncHandler = require("express-async-handler");
 const user = require("../models/user");
-const books = require("../models/books");
 const bcrypt = require("bcrypt");
 const { createToken } = require("../utiles/createToken");
 let signUp = async (req, res) => {
@@ -33,7 +31,6 @@ let signUp = async (req, res) => {
     res.status(500).json(response);
   }
 };
-
 let logIn = async (req, res) => {
   let { email, password } = req.body;
   console.log(email, password);
@@ -55,9 +52,11 @@ let logIn = async (req, res) => {
   }
 };
 let logOut = async (req, res) => {
-  res.cookie("jwt", "");
+  res.cookie("jwt", "", { maxAge: 1 });
+  res.redirect("/");
 };
 module.exports = {
   signUp,
   logIn,
+  logOut,
 };

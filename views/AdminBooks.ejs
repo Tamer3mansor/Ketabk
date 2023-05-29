@@ -1,0 +1,22 @@
+<body>
+    <table id="table" >  
+        <thead>  
+            <tr>  
+                <th>Name</th>  
+                <th>id</th> 
+                <th>Author</th>  
+            </tr>  
+        </thead>  
+         <tbody>  
+         <% Books.forEach(function (book) { %>
+            <tr>  
+                <td><%= book.name %></td>  
+                <td><%= book.id %></td>
+                <td><%= book.author %></td>
+            </tr>                                   
+         <% }) %>
+         </tbody>
+    </table>   
+</body>
+
+</html>

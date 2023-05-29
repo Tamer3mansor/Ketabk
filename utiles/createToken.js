@@ -7,6 +7,4 @@ const createToken = (id) => {
   return token;
 };
 
-const verifyToken = () => {};
-// return jwt.sign({id} , 'tamer secret' ,{expiresIn:4*24*60*60});
 module.exports = { createToken };

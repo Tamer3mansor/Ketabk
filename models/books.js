@@ -4,8 +4,7 @@ const bookSchema = new Schema({
   name: String,
   author: String,
   description: String,
-  cover: String,
+  buyLink: String,
   type: String,
 });
-const books = mongoose.model("books", bookSchema);
-module.exports = { books };
+module.exports = mongoose.model("books", bookSchema);

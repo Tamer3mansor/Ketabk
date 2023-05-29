@@ -9,7 +9,9 @@
       <header><%- include('./partials/header'); %></header>
       <input type="text" placeholder="enter keyWord here" id="search" />
       <button onclick="Search()">Search</button>
-      <div id="father"><h1></h1></div>
+      <button onclick="Books()">Our Books</button>
+
+      <div id="father" style="padding-top: 10px"><h1></h1></div>
     </main>
     <script>
       let items = [];
@@ -29,16 +31,20 @@
           };
         for (x = 0; x < items.length; x++) {
           var board = document.createElement("div");
-          board.style.border = "10px";
+          var link = document.createElement("a");
+          board.style.borderBottom = "1px solid #007bff";
           board.style.color = "black";
           let name = items[x].volumeInfo.title || "null";
           let Rate = items[x].volumeInfo.averageRating || "null";
-          let buyLink = items[x].saleInfo.buyLink || "null";
+          link.href = items[x].saleInfo.buyLink || "null";
           board.innerText = `name : ${name}        
           Rate : ${Rate}
-          buy link : ${buyLink}`;
+          buy link : ${link}`;
           father.append(board);
         }
+      };
+      let Books = () => {
+        location.assign("/ourBooks");
       };
     </script>
     <footer><%- include('./partials/footer'); %></footer>
