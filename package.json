@@ -31,6 +31,7 @@
     "mongoose": "^7.1.1",
     "node-fetch": "^2.6.11",
     "nodemailer": "^6.9.2",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "winston": "^3.9.0"
   }
 }

@@ -1,7 +1,10 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const bookSchema = new Schema({
-  name: String,
+  name: {
+    type: String,
+    required: true["Enter name of book"],
+  },
   author: String,
   description: String,
   buyLink: String,

@@ -7,7 +7,7 @@
     <main>
       <header><%- include('./partials/AdminHeader'); %></header>
       <form>
-        <input type="text" placeholder="enter Book id " name="id" />
+        <input type="text" placeholder="enter Book id " id="id" />
         <button type="submit">Delete</button>
       </form>
     </main>
@@ -15,14 +15,24 @@
     <footer><%- include('./partials/footer'); %></footer>
     <script>
       let form = document.querySelector("form");
-      let id = form.id.value;
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
+        let id = document.getElementById("id").value;
+        console.log(id);
         let res = await fetch("/deleteBooks", {
           method: "POST",
           body: JSON.stringify({ id }),
           headers: { "Content-Type": "application/json" },
         });
+        let data = await res.json();
+        if (data.msg == "done") {
+          window.alert("done lets view new book list ");
+          location.assign("/adminBooks");
+        } else if (data.msg == "id wrong") {
+          window.alert("wrong id");
+        } else {
+          window.alert("Try agin ");
+        }
       });
     </script>
   </body>

@@ -32,12 +32,10 @@
           const data = await res.json();
           console.log(data);
           if (data.msg == "success") {
-            console.log("success");
-            location.assign("/books");
-          } else if (data.msg == "Incorrect password") {
-            passwordError.textContent = "Incorrect password";
-          } else if (data.msg == "Incorrect email") {
-            emailError.textContent = "Incorrect email";
+            window.alert("done lets see new list of books");
+            location.assign("/adminBooks");
+          } else if (data.msg == "Wrong") {
+            window.alert("Try again");
           }
         } catch (error) {
           console.log(error);
