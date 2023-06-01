@@ -3,6 +3,7 @@
 
 <body class="container">
   <header><%- include('./partials/header'); %></header>
+  <br>
   <form action="/signUp" method="post">
     <input type="email" placeholder="enter Your email" name="email" />
     <br>
@@ -19,8 +20,8 @@
     </label>
 
      </div>
+     <p>Already Have an account <a href="/logIn" style="color:dodgerblue"> login</a>.</p>
     <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
-    <p>Already Have an account <a href="/logIn" style="color:dodgerblue">login</a>.</p>
     <div class="clearfix">
       <button type="button" class="cancelbtn" onclick="this.form.reset()">Cancel</button>
       <button type="submit" class="signupbtn" >Sign Up</button>

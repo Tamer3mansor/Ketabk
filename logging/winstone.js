@@ -2,21 +2,20 @@ const winston = require("winston");
 
 const logger = winston.createLogger({
   level: "error",
-  level:"info",
+  level: "info",
   format: winston.format.json(),
   transports: [
     new winston.transports.File({
-      filename: "logging.log",
+      filename: "errors.log",
       level: "error",
       format: winston.format.combine(
         winston.format.timestamp(),
         winston.format.json()
       ),
     }),
-  ],
-  transports: [
     new winston.transports.File({
-      filename: "logging.log",
+      filename: "info.log",
+      level: "info",
       format: winston.format.combine(
         winston.format.timestamp(),
         winston.format.json()
@@ -32,4 +31,4 @@ if (process.env.NODE_ENV !== "production") {
     })
   );
 }
-module.exports=logger;
+module.exports = logger;

@@ -1,13 +1,25 @@
 const express = require("express");
+const path = require("path");
 const { tokenVerification } = require("../utiles/verfiyToken");
 const { signUp, logIn, logOut } = require("../controller/ketabk");
+const multer = require("multer");
+const route = express.Router();
 const {
   addBook,
   deleteBook,
   allBooks,
   userBooks,
 } = require("../controller/booksController");
-const route = express.Router();
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null,("d:/program/web/java_script/Node/my_project/ketabk/Books"));
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + "_" + file.originalname);
+  },
+});
+const upload = multer({ storage: storage });
+
 route.get("/", (req, res) => {
   res.render("index.ejs");
 });
@@ -35,7 +47,7 @@ route.get("/deleteBooks", (req, res) => {
   res.render("deleteBooks.ejs");
 });
 route.get("/adminBooks", allBooks);
-route.post("/addBooks", addBook);
+route.post("/addBooks", upload.single("pdf"), addBook);
 route.post("/deleteBooks", deleteBook);
 route.post("/signUp", signUp);
 route.post("/logIn", logIn);

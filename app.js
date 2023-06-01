@@ -8,6 +8,7 @@ const { checkUser } = require("./utiles/verfiyToken");
 //Middleware
 app.use(express.json());
 app.use(express.static("./public"));
+app.use("/addBooks", express.static("./Books"));
 app.use(body_parser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.set("view engin", "ejs");

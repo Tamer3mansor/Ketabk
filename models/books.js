@@ -9,5 +9,6 @@ const bookSchema = new Schema({
   description: String,
   buyLink: String,
   type: String,
+  pdf: String,
 });
 module.exports = mongoose.model("books", bookSchema);

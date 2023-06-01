@@ -1,13 +1,15 @@
 const books = require("../models/books");
 const logger = require("../logging/winstone");
 let addBook = async (req, res) => {
-  let { bookName, bookAuthor, bookDesc, bookLink } = req.body;
+  console.log(req.file, req.body);
+  let { bookName, bookAuthor, bookDesc, bookLink, pdf } = req.body;
   try {
     let _book = await books.create({
       name: bookName,
       author: bookAuthor,
       description: bookDesc,
       buyLink: bookLink,
+      pdf: pdf,
     });
     if (_book) {
       res.status(200).send({ msg: "success" });

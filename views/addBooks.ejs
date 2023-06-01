@@ -6,41 +6,15 @@
   <body class="container">
     <main>
       <header><%- include('./partials/AdminHeader'); %></header>
-      <form>
-        <input type="text" placeholder="Book Name" id="name" />
-        <input type="text" placeholder="Author " id="author" />
-        <input type="text" placeholder="Buy link" id="link" />
-        <input type="text" placeholder="Book description" id="desc" />
+      <form method="post"  action="/addBooks" enctype="multipart/form-data">
+        <input type="text" placeholder="Book Name" id="name"  name="name"/>
+        <input type="text" placeholder="Author " id="author" name="author" />
+        <input type="text" placeholder="Buy link" id="link" name="link" />
+        <input type="text" placeholder="Book description" id="desc" name="desc"/>
+        <input type="file" name="pdf" id="pdf" placeholder="upload file" />
         <button type="submit">Add</button>
       </form>
     </main>
     <footer><%- include('./partials/footer'); %></footer>
-    <script>
-      let form = document.querySelector("form");
-      form.addEventListener("submit", async (e) => {
-        let bookName = document.getElementById("name").value;
-        let bookAuthor = document.getElementById("author").value;
-        let bookLink = document.getElementById("link").value;
-        let bookDesc = document.getElementById("desc").value;
-        e.preventDefault();
-        try {
-          const res = await fetch("/addBooks", {
-            method: "POST",
-            body: JSON.stringify({ bookName, bookAuthor, bookDesc, bookLink }),
-            headers: { "Content-Type": "application/json" },
-          });
-          const data = await res.json();
-          console.log(data);
-          if (data.msg == "success") {
-            window.alert("done lets see new list of books");
-            location.assign("/adminBooks");
-          } else if (data.msg == "Wrong") {
-            window.alert("Try again");
-          }
-        } catch (error) {
-          console.log(error);
-        }
-      });
-    </script>
   </body>
 </html>
