@@ -14,8 +14,14 @@ const sendEmail = (receiver) => {
   const mailOptions = {
     from: "Tamermansor371@gmail.com",
     to: receiver,
-    subject: "Welcome to Ketabk site ",
-    text: `Welcome to Ketabk site we are happy to see you here we hope you will find what you want you can know more about us from this link https://ketabk.onrender.com/about`,
+    subject: "Welcome",
+    text: ` Welcome to Ketabk 
+    
+          we are happy to see you here we hope you will find what you want 
+
+          if you find anu issue we hope you contact as at Tamermansor371@gmail.com
+          
+          you can know more about us from this link https://ketabk.onrender.com/about`,
   };
 
   transporter.sendMail(mailOptions, function (error, info) {

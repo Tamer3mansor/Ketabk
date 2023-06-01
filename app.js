@@ -4,14 +4,15 @@ const cookieParser = require("cookie-parser");
 const app = express();
 const connection = require("./dataBase/DB");
 const router = require("./routes/route");
-const path = require("path");
+const { checkUser } = require("./utiles/verfiyToken");
 //Middleware
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "./public")));
+app.use(express.static("./public"));
 app.use(body_parser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.set("view engin", "ejs");
 require("dotenv").config();
+app.use("*", checkUser);
 app.use("/", router);
 app.listen(process.env.port, () => {
   try {

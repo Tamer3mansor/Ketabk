@@ -2,6 +2,7 @@ const winston = require("winston");
 
 const logger = winston.createLogger({
   level: "error",
+  level:"info",
   format: winston.format.json(),
   transports: [
     new winston.transports.File({

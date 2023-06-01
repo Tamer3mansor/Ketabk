@@ -1,36 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <%- include('./partials/head'); %>
-  </head>
-  <body class="container">
-    <%- include ('./partials/header.ejs'); %>
-    <h1>Welcome to ketabk</h1>
-    <br />
-    <h2>Welcome to Ketabk
-      This site is a training site to apply some of what I learned in using {Node js , Express js , Ejs}.<br>
-     The site focuses more on back-end and training in deploying the site
-     <br>
-      Features:
-      <br>
-      <li>
-        
-      <ui>Send a welcome email once registration</ui>
-      <ui>Application protection in logIn and signUp</ui>
-      <ui> Allocating a special path for the admin that can only be accessed with a specific email</ui>
-      <ui> Customizing special features for the addict</ui>
-      <ui> Use winston to display and log errors</ui>
-      <ui> Data fetching using fetch via Google Book</ui>
-      <li>
-    </h2>
-    <h3>my works :<a href="https://github.com/Tamer3mansor">Git hub</a> <br>
-        my Linked in :<a href="https://www.linkedin.com/in/tamer-mansor-05b713258/">Linked in</a> <br>
-        my gmail : Tamermansor371@gmail.com
-        <br>
-    
-    </h3>
-    <br />
+<head>
+  <%- include('./partials/head'); %>
+</head>
+<body class="container">
+  <%- include ('./partials/header.ejs'); %>
 
-    <footer><%- include('./partials/footer.ejs'); %></footer>
-  </body>
-</html>
+  <div class="aboutus-area">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="aboutus-image float-left hidden-sm">
+              <img
+                src="https://devitems.com/preview/sopnovilla/sopnovilla/img/about/1.jpg"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="col-md-8 col-sm-6 col-xs-12">
+            <div class="aboutus-content" style="background-color: bisque; width: 1100px; padding-left: 20px;">
+             <br> <h1 style=>Welcome to Ketabk :) </h1>
+              <br>
+              <h3>
+              <p>
+                This site designed for good reader you can found what you want
+                here.<br /> <br>
+                Also this site is a training to apply some of what I learned in
+                using {Node js , Express js , Ejs} And this some feature i add
+              </p>
+            </h3>
+              <ol>
+                <li>Send a welcome email once registration</li>
+                <br />
+                <li>Application protection in logIn and signUp</li>
+                <br />
+                <li>
+                  Allocating a special path for the admin that can only be
+                  accessed with a specific email
+                </li>
+                <br />
+
+                <li>Customizing special features for the addict</li>
+                <br />
+                <li>Use winston to display and log errors</li>
+                <br />
+                <li>Upload pdf Books and user can download it</li>
+                <br />
+              </ol>
+              <div class="counter">
+                <h4>Reach me </h4>
+                <a href="https://github.com/Tamer3mansor">Git hub</a> 
+                <a href="https://www.linkedin.com/in/tamer-mansor-05b713258/">Linked in</a>
+                Tamermansor371@gmail.com
+              </h3>
+              <br />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<h3>
+ 
+
+<footer><%- include('./partials/footer.ejs'); %></footer>

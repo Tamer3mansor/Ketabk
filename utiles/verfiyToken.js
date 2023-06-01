@@ -24,4 +24,22 @@ let tokenVerification = async (req, res, next) => {
     }
   }
 };
-module.exports = { tokenVerification };
+const checkUser = (req, res, next) => {
+  const token = req.cookies.jwt;
+  if (token) {
+    jwt.verify(token, "secret", async (err, decodedToken) => {
+      if (err) {
+        res.locals.user = null;
+        next();
+      } else {
+        let _user = await user.findById(decodedToken.id);
+        res.locals.user = _user;
+        next();
+      }
+    });
+  } else {
+    res.locals.user = null;
+    next();
+  }
+};
+module.exports = { tokenVerification, checkUser };

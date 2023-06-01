@@ -4,7 +4,7 @@ const user = require("../models/user");
 const bcrypt = require("bcrypt");
 const { createToken } = require("../utiles/createToken");
 const logger = require("../logging/winstone");
-let signUp = async (req, res) => {
+let signUp = async (req, res, next) => {
   const { email, password, confirm } = req.body;
   let response;
   if (password == confirm) {
@@ -16,13 +16,13 @@ let signUp = async (req, res) => {
       if (_user) {
         let id = _user.id;
         sendEmail(email);
-        console.log("created");
+        logger.info(`created ${email}`);
         res.cookie("jwt", createToken(id), {
           httpOnly: true,
           maxAge: 3 * 24 * 60 * 60 * 1000,
         });
-        res.locals.logged = true;
         res.status(200).json({ msg: "success" });
+        next();
       }
     } catch (error) {
       response = handelErrors(error);
@@ -31,7 +31,7 @@ let signUp = async (req, res) => {
     }
   } else {
     response = { msg: "not equal" };
-    logger.error("Not equal");
+    logger.error("two password Not equal");
     res.status(500).json(response);
   }
 };
