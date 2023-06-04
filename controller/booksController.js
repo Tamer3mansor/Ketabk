@@ -8,8 +8,8 @@ let addBook = async (req, res) => {
     let _book = await books.create({
       name,
       author,
-      buyLink:link,
-      description:desc,
+      buyLink: link,
+      description: desc,
       pdf: filename,
     });
     if (_book) {
@@ -55,9 +55,24 @@ let userBooks = async (req, res) => {
     res.status(400).json({ msg: "try agin" });
   }
 };
+let download = async (req, res) => {
+  var str = req.url;
+  var arr = str.split("path=");
+  var value = arr.pop();
+  try {
+    let result = await res.download(`../Books/${value}`);
+    logger.info("download one ", result);
+    console.log(result);
+  } catch (error) {
+    logger.error("error while download one ", error);
+    console.log(error);
+    res.end;
+  }
+};
 module.exports = {
   addBook,
   deleteBook,
   allBooks,
   userBooks,
+  download,
 };
