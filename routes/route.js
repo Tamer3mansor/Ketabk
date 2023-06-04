@@ -12,7 +12,7 @@ const {
 } = require("../controller/booksController");
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null,("d:/program/web/java_script/Node/my_project/ketabk/Books"));
+    cb(null, "d:/program/web/java_script/Node/my_project/ketabk/Books");
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + "_" + file.originalname);
@@ -51,5 +51,18 @@ route.post("/addBooks", upload.single("pdf"), addBook);
 route.post("/deleteBooks", deleteBook);
 route.post("/signUp", signUp);
 route.post("/logIn", logIn);
+route.post("/download_book", (req, res) => {
+  var str = req.url;
+  var arr = str.split("path=");
+  var value = arr.pop();
+  try {
+    res.download(`../Books/${value}`, (err) => {
+      console.log(err);
+    });
+  } catch (error) {
+    console.log(error);
+    res.end;
+  }
+});
 
 module.exports = route;

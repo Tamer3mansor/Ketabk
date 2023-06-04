@@ -22,8 +22,8 @@
                     <td><%= book.name %></td>  
                     <td><%= book.description %></td>
                     <td><%= book.author %></td>
-                    <td><%= book.buyLink %></td>
-                </tr>                                   
+                </tr>
+                <td><button onclick="addParam('<%=book.pdf%>')"> download</button> </td>                                    
              <% }) %>
              </tbody>
         </table>   
@@ -34,4 +34,15 @@
 
     <footer><%- include('./partials/footer'); %></footer>
   </body>
+  <script>
+    let addParam =async(pdf)=>{
+   var url = `/download_book?path=${pdf}`;
+   url = url.toString ();
+       let res=await fetch(url,{
+           method: 'POST',
+           headers: { 'Content-Type': 'application/json' }
+   
+       })
+    }
+   </script>
 </html>

@@ -9,12 +9,14 @@
         </thead>  
          <tbody>  
          <% Books.forEach(function (book) { %>
+            
             <tr>  
                 <td><%= book.name %></td>  
                 <td><%= book.id %></td>
                 <td><%= book.author %></td>
+                <td><%= book.pdf %></td>
             </tr>                                   
-         <% }) %>
+                    <% }) %>
          </tbody>
     </table>   
 </body>
