@@ -63,8 +63,23 @@ let logOut = async (req, res) => {
   res.locals.logged = false;
   res.redirect("/");
 };
+let download = async (req, res) => {
+  var str = req.url;
+  var arr = str.split("path=");
+  var value = arr.pop();
+  try {
+    let result = await res.download(`../Books/${value}`);
+    logger.info("download one ", result);
+    console.log(result);
+  } catch (error) {
+    logger.error("error while download one ", error);
+    console.log(error);
+    res.end;
+  }
+};
 module.exports = {
   signUp,
   logIn,
   logOut,
+  download,
 };

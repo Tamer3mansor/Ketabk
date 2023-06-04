@@ -9,6 +9,7 @@ const {
   deleteBook,
   allBooks,
   userBooks,
+  download,
 } = require("../controller/booksController");
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -46,23 +47,14 @@ route.get("/addBooks", (req, res) => {
 route.get("/deleteBooks", (req, res) => {
   res.render("deleteBooks.ejs");
 });
+route.get("/download_book",(req,res)=>{
+  res.send({msg:"hi there"})
+})
 route.get("/adminBooks", allBooks);
 route.post("/addBooks", upload.single("pdf"), addBook);
 route.post("/deleteBooks", deleteBook);
 route.post("/signUp", signUp);
 route.post("/logIn", logIn);
-route.post("/download_book", (req, res) => {
-  var str = req.url;
-  var arr = str.split("path=");
-  var value = arr.pop();
-  try {
-    res.download(`../Books/${value}`, (err) => {
-      console.log(err);
-    });
-  } catch (error) {
-    console.log(error);
-    res.end;
-  }
-});
+route.post("/download_book" , download);
 
 module.exports = route;
