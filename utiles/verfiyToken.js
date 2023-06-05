@@ -14,11 +14,10 @@ let tokenVerification = async (req, res, next) => {
     let _user = await user.findById(_id);
     if (_user) {
       if (_user.email == "AdminSecret@gmail.com" && req.path != "/adminPage") {
-        res.redirect("/adminPage");
+        return res.redirect("/adminPage");}
+
         next();
-      }
-      next();
-    } else {
+          } else {
       res.redirect("/signUp");
       next();
     }
