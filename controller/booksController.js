@@ -1,5 +1,6 @@
 const books = require("../models/books");
 const logger = require("../logging/winstone");
+const path = require("path");
 let addBook = async (req, res) => {
   console.log(req.body);
   let { name, author, link, desc } = req.body;
@@ -60,13 +61,23 @@ let download = async (req, res) => {
   var arr = str.split("path=");
   var value = arr.pop();
   try {
-    let result = await res.download(`../Books/${value}`);
-    logger.info("download one ", result);
-    console.log(result);
+    let filePATH = path.join(__dirname + `/../Books/${value}`);
+
+    if (!fs.existsSync(filePATH)) {
+      res.send("File doest not exist");
+    }
+
+    let result = await res.download(filePATH, value, (error) => {
+      if (error) {
+        console.log("error", error);
+        res.status(500).send(error);
+      }
+    });
+    if (result) {
+      res.status(200).send("ok");
+    }
   } catch (error) {
-    logger.error("error while download one ", error);
-    console.log(error);
-    res.end;
+    res.send(error);
   }
 };
 module.exports = {

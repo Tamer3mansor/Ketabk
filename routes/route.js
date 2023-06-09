@@ -37,7 +37,7 @@ route.get("/logIn", (req, res) => {
 route.get("/books", tokenVerification, (req, res) => {
   res.render("books.ejs");
 });
-route.get("/adminPage", tokenVerification,(req, res) => {
+route.get("/adminPage", tokenVerification, (req, res) => {
   res.render("adminPage.ejs");
 });
 route.get("/addBooks", (req, res) => {
@@ -49,8 +49,8 @@ route.get("/deleteBooks", (req, res) => {
 route.get("/download_book", (req, res) => {
   res.send({ msg: "hi there" });
 });
-route.get("/ourBooks",tokenVerification, userBooks);
-route.get("/adminBooks",tokenVerification, allBooks);
+route.get("/ourBooks", tokenVerification, userBooks);
+route.get("/adminBooks", allBooks);
 route.post("/addBooks", upload.single("pdf"), addBook);
 route.post("/deleteBooks", deleteBook);
 route.post("/signUp", signUp);

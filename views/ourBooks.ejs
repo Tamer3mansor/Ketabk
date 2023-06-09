@@ -36,9 +36,8 @@
   </body>
   <script>
     let addParam =async(pdf)=>{
-   var url = `/download_book?path=${pdf}`;
-   url = url.toString ();
-       let res=await fetch(url,{
+   location.href=`/download_book?path=${pdf}`
+       let res=await fetch(window. location. href,{
            method: 'POST',
            headers: { 'Content-Type': 'application/json' }
    
