@@ -46,15 +46,15 @@ route.get("/addBooks", (req, res) => {
 route.get("/deleteBooks", (req, res) => {
   res.render("deleteBooks.ejs");
 });
-route.get("/download_book", (req, res) => {
-  res.send({ msg: "hi there" });
-});
+// route.get("/download_book", (req, res) => {
+//   res.send({ msg: "downloading now ...." });
+// });
 route.get("/ourBooks", tokenVerification, userBooks);
 route.get("/adminBooks", allBooks);
 route.post("/addBooks", upload.single("pdf"), addBook);
 route.post("/deleteBooks", deleteBook);
 route.post("/signUp", signUp);
 route.post("/logIn", logIn);
-route.post("/download_book", download);
+route.get("/download_book", download);
 
 module.exports = route;
