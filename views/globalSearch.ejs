@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head'); %>
+  </head>
+  <body class="container">
+    <main>
+      <header><%- include('./partials/header'); %></header>
+      <input
+        type="text"
+        placeholder="Enter Keyword "
+        id="search"
+        style="margin: 20px; display: inline"
+      />
+      <div style="margin: 20px; display: inline">
+        <button onclick="Search()">Search</button>
+      </div>
+
+      <div id="father" style="padding-top: 10px"><h1></h1></div>
+    </main>
+    <script>
+      let items = [];
+      let Search = () => {
+        let father = document.getElementById("father");
+        father.innerText = "  ";
+        let key = document.getElementById("search").value;
+        fetch(`https://www.googleapis.com/books/v1/volumes?q=${key}`)
+          .then((res) => {
+            return res.json();
+          })
+          .then((result) => {
+            items = result.items;
+          }),
+          (error) => {
+            console.log(error);
+          };
+        for (x = 0; x < items.length; x++) {
+          var board = document.createElement("div");
+          var link = document.createElement("a");
+          board.style.borderBottom = "1px solid #007bff";
+          board.style.color = "black";
+          let name = items[x].volumeInfo.title || "null";
+          let Rate = items[x].volumeInfo.averageRating || "null";
+          link.href = items[x].saleInfo.buyLink || "null";
+          board.innerText = `name : ${name}        
+          Rate : ${Rate}
+          buy link : ${link}`;
+          father.append(board);
+        }
+      };
+    </script>
+    <footer><%- include('./partials/footer'); %></footer>
+  </body>
+</html>

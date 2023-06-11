@@ -56,5 +56,8 @@ route.post("/deleteBooks", deleteBook);
 route.post("/signUp", signUp);
 route.post("/logIn", logIn);
 route.get("/download_book", download);
+route.get("/globalSearch", (req,res)=>{
+  res.render('globalSearch.ejs')
+});
 
 module.exports = route;
